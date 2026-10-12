@@ -1,0 +1,91 @@
+@import "tailwindcss" ;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+button {
+  transition: box-shadow 180ms ease, filter 180ms ease, transform 180ms ease;
+}
+
+button:not(:disabled):hover {
+  filter: brightness(1.04);
+  box-shadow: 0 8px 18px rgb(236 72 153 / 18%);
+  transform: translateY(-2px);
+}
+
+button:not(:disabled):active {
+  filter: brightness(0.98);
+  transform: translateY(0);
+}
+
+.add-to-cart-button {
+  transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.add-to-cart-button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgb(236 72 153 / 28%);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+@media (min-width: 1024px) {
+  #root {
+    zoom: 67%;
+    min-height: 149.2538vh;
+  }
+
+  .min-h-screen {
+    min-height: 149.2538vh;
+  }
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+/* ---------- Pearl Promise Announcement Bar ---------- */
+
+.marquee{
+  white-space: nowrap;
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: marquee 28s linear infinite;
+  animation-play-state:running ;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
