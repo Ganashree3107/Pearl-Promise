@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Pearl Promise
 
 Responsive skincare e-commerce application with a React/Vite frontend, FastAPI
@@ -187,4 +187,3 @@ npm run build
 =======
 # Pearl-Promise
 Pearl Promise is a skincare e-commerce platform built with React, Tailwind CSS, FastAPI, and MongoDB Atlas. It offers product browsing, user authentication, shopping cart, wishlist, and order management through a modern, responsive interface.
->>>>>>> 8b64961bab9d77f19553072f5a21bd25b725f89b
