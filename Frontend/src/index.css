@@ -49,6 +49,17 @@ button:not(:disabled):active {
   overflow-x: clip;
 }
 
+@media (min-width: 1024px) {
+  #root {
+    zoom: 67%;
+    min-height: 149.2538vh;
+  }
+
+  .min-h-screen {
+    min-height: 149.2538vh;
+  }
+}
+
 img,
 video {
   max-width: 100%;
