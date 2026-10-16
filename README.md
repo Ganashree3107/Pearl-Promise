@@ -47,18 +47,22 @@ cd Backend
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-python -m uvicorn app.main:app --reload --port 8000
+python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-The API is available at `http://localhost:8000`; interactive API docs are at
-`http://localhost:8000/docs`.
+On macOS or Linux, activate the environment with `source .venv/bin/activate`
+instead of the PowerShell activation command. The API is available at
+`http://localhost:8000`; interactive API docs are at `http://localhost:8000/docs`.
 
 ### 2. Configure and run the frontend
 
-Set `VITE_API_URL` in `Frontend/.env.local` to the backend base URL:
+For local development, leave `VITE_API_URL` unset (or empty) in
+`Frontend/.env.local`. The frontend uses the current hostname on port 8000, so
+it works from another device on the same network without hard-coding
+`localhost`. Set `VITE_API_URL` only when the API has a different hostname:
 
 ```env
-VITE_API_URL=http://localhost:8000
+VITE_API_URL=https://api.example.com
 ```
 
 Then run:
@@ -69,7 +73,10 @@ npm install
 npm run dev
 ```
 
-Vite prints the local frontend URL when it starts.
+Vite prints the local and network frontend URLs when it starts. To use the
+app from a phone or tablet, connect it to the same trusted network and open the
+network URL. Allow ports 5173 and 8000 through the development computer's
+firewall if prompted. Keep the development servers off public networks.
 
 ### 3. Seed the product catalog
 
@@ -94,7 +101,7 @@ provider's environment configuration after deployment.
 | `MONGODB_URI` | MongoDB connection string |
 | `MONGODB_DATABASE` | Database name; defaults to `pearl_promise` |
 | `JWT_SECRET_KEY` | Secret used to sign tokens; use a unique random value |
-| `FRONTEND_ORIGIN` | Exact frontend origin allowed by CORS |
+| `FRONTEND_ORIGIN` | Exact frontend origin allowed by CORS; required for production |
 | `ENVIRONMENT` | Set to `production` for deployment |
 | `GOOGLE_CLIENT_ID` | Optional Google sign-in client ID |
 | `EMAIL_HOST`, `EMAIL_PORT` | Optional SMTP server settings |

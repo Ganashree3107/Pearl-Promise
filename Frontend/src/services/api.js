@@ -1,6 +1,9 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || (
-  import.meta.env.DEV ? "http://localhost:8000" : ""
-);
+const configuredApiUrl = import.meta.env.VITE_API_URL?.trim();
+const API_BASE_URL = configuredApiUrl
+  ? configuredApiUrl.replace(/\/+$/, "")
+  : import.meta.env.DEV
+    ? `${window.location.protocol}//${window.location.hostname}:8000`
+    : "";
 const ACCESS_TOKEN_KEY = "Pearl Promise-access-token";
 
 export const getAccessToken = () => localStorage.getItem(ACCESS_TOKEN_KEY);

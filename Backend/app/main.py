@@ -19,12 +19,19 @@ async def lifespan(app: FastAPI):
     await close_mongodb_connection()
 app = FastAPI(title=settings.app_name, version="1.0.0", lifespan=lifespan)
 allowed_origins = {settings.frontend_origin}
+allow_origin_regex = None
 if settings.environment.strip().lower() not in {"prod", "production"}:
     allowed_origins.update({"http://localhost:5174", "http://127.0.0.1:5174"})
+    allow_origin_regex = (
+        r"^http://(?:localhost|127\.0\.0\.1|10(?:\.\d{1,3}){3}|"
+        r"192\.168(?:\.\d{1,3}){2}|172\.(?:1[6-9]|2\d|3[01])(?:\.\d{1,3}){2})"
+        r"(?::\d+)?$"
+    )
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=sorted(allowed_origins),
+    allow_origin_regex=allow_origin_regex,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type"],
