@@ -18,7 +18,8 @@ async def lifespan(app: FastAPI):
     yield
     await close_mongodb_connection()
 app = FastAPI(title=settings.app_name, version="1.0.0", lifespan=lifespan)
-allowed_origins = {settings.frontend_origin}
+# Browsers send the origin without a trailing slash, so tolerate one in config.
+allowed_origins = {settings.frontend_origin.strip().rstrip("/")}
 allow_origin_regex = None
 if settings.environment.strip().lower() not in {"prod", "production"}:
     allowed_origins.update({"http://localhost:5174", "http://127.0.0.1:5174"})
