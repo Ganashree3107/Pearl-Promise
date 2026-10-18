@@ -5,6 +5,23 @@
     <link rel="icon" type="image/ico" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pearl Promise</title>
+    <script>
+      // Desktop layout is designed on a fixed canvas and scaled to fit the
+      // screen, so padding and arrangement look identical on every laptop
+      // and monitor. Phones and tablets (< 1024px) use the responsive layout.
+      (function () {
+        var DESIGN_WIDTH = 2292; // 1536px laptop viewed at 67% zoom
+        var MIN_ZOOM = 0.56;
+        var root = document.documentElement;
+        function applyZoom() {
+          var width = root.clientWidth || window.innerWidth;
+          var zoom = width >= 1024 ? Math.max(width / DESIGN_WIDTH, MIN_ZOOM) : 1;
+          root.style.setProperty("--page-zoom", zoom.toFixed(4));
+        }
+        applyZoom();
+        window.addEventListener("resize", applyZoom);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

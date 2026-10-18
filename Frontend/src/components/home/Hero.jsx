@@ -19,7 +19,7 @@ const heroSlides = [
     image: "/images/hero/hero-1.png",
     bg: "bg-gradient-to-r from-[#eef6ff] via-[#dbeafe] to-[#93c5fd]",
     accent:"text-blue-600",
-    size:"xl:h-[520px]",
+    size:"lg:h-[520px]",
     offset:"lg:-translate-x-12",
     slug:"hydrating-sunscreen"
   },
@@ -32,7 +32,7 @@ const heroSlides = [
     image: "/images/hero/hero-2.png",
     bg: "bg-gradient-to-r from-[#f3e8ff] via-[#ddd6fe] to-[#a78bfa]",
     accent:"text-purple-600",
-    size:"xl:h-[480px]",
+    size:"lg:h-[480px]",
     offset:"lg:-translate-x-16",
     slug:"blueberry-repair-serum",
 
@@ -46,7 +46,7 @@ const heroSlides = [
     image: "/images/hero/hero-3.png",
     bg: "bg-gradient-to-r from-[#fff8ef] via-[#f7ead6] to-[#efd3a4]",
     accent:"text-amber-600",
-    size:"xl:h-[420px]",
+    size:"lg:h-[420px]",
     offset:"lg:-translate-x-28",
     slug:"ceramide-moisturizer",
   },
@@ -87,7 +87,7 @@ function Hero() {
       {/* Soft Background Glow */}
       <div className="pointer-events-none absolute right-0 top-1/2 h-[750px] w-[550px] -translate-y-1/2 rounded-full bg-white/40 blur-3xl"></div>
 
-      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-4 py-12 sm:px-6 md:px-8 xl:min-h-[815px] xl:flex-row xl:gap-6 xl:px-12 xl:py-10">
+      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-4 pt-12 pb-24 sm:px-6 md:px-8 lg:min-h-[815px] lg:flex-row lg:gap-6 lg:px-12 lg:py-10">
 
         {/* LEFT CONTENT */}
 
@@ -99,7 +99,7 @@ function Hero() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.5 }}
-            className="w-full xl:w-1/2"
+            className="w-full lg:w-1/2"
           >
             <span className="inline-flex items-center rounded-full bg-white/70 px-5 py-2 text-sm font-medium text-gray-700 backdrop-blur-md shadow-md">
 
@@ -107,7 +107,7 @@ function Hero() {
 
             </span>
 
-            <h1 className="mt-7 text-4xl font-bold leading-tight tracking-tight text-gray-900 sm:text-5xl lg:text-6xl xl:text-7xl">
+            <h1 className="mt-7 text-4xl font-bold leading-tight tracking-tight text-gray-900 sm:text-5xl lg:text-7xl">
 
               {heroSlides[currentSlide].title}
 
@@ -188,7 +188,7 @@ function Hero() {
         </AnimatePresence>
         {/* RIGHT IMAGE */}
 
-        <div className="relative flex w-full items-center justify-center xl:flex-1 xl:justify-end">
+        <div className="relative flex w-full items-center justify-center lg:flex-1 lg:justify-end">
 
           <AnimatePresence mode="wait">
 
@@ -212,7 +212,7 @@ function Hero() {
                   ease: "easeInOut",
                 },
               }}
-              className={`h-56 max-w-full w-auto object-contain drop-shadow-2xl sm:h-72 md:h-80 xl:max-w-none ${heroSlides[currentSlide].size} xl:translate-x-10`}
+              className={`h-56 max-w-full w-auto object-contain drop-shadow-2xl sm:h-72 md:h-80 lg:max-w-none ${heroSlides[currentSlide].size} lg:translate-x-10`}
             />
 
           </AnimatePresence>
@@ -225,7 +225,7 @@ function Hero() {
 
       <button
         onClick={prevSlide}
-        className="absolute z-20 left-6 top-1/2 -translate-y-1/2 rounded-full bg-white/70 p-3 shadow-lg backdrop-blur-md transition-all duration-300 hover:bg-pink-500 hover:text-white"
+        className="absolute z-20 left-4 bottom-5 rounded-full bg-white/70 p-2 shadow-lg sm:left-6 sm:p-3 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 backdrop-blur-md transition-all duration-300 hover:bg-pink-500 hover:text-white"
       >
         <ChevronLeft size={24} />
       </button>
@@ -234,14 +234,14 @@ function Hero() {
 
       <button
         onClick={nextSlide}
-        className="absolute z-20 right-6 top-1/2 -translate-y-1/2 rounded-full bg-white/70 p-3 shadow-lg backdrop-blur-md transition-all duration-300 hover:bg-pink-500 hover:text-white"
+        className="absolute z-20 right-4 bottom-5 rounded-full bg-white/70 p-2 shadow-lg sm:right-6 sm:p-3 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 backdrop-blur-md transition-all duration-300 hover:bg-pink-500 hover:text-white"
       >
         <ChevronRight size={24} />
       </button>
 
       {/* Slider Dots */}
 
-      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-3">
+      <div className="absolute bottom-9 left-1/2 flex -translate-x-1/2 gap-3 sm:bottom-10 lg:bottom-8">
 
         {heroSlides.map((_, index) => (
 

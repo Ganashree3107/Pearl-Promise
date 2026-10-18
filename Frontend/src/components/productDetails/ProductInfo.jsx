@@ -62,7 +62,7 @@ function ProductInfo({ product }) {
       initial={{ opacity: 0, x: 40 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col gap-8"
+      className="order-2 flex flex-col gap-8 lg:order-none"
     >
 
       {/* Badge */}

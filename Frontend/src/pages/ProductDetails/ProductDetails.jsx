@@ -32,8 +32,8 @@ function ProductDetails() {
       <Breadcrumb product={product}/>
 
       {/* Product Hero */}
-      <section className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+      <section className="max-w-7xl mx-auto px-4 py-8 sm:px-6 sm:py-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           <ImageGallery product={product} />
           <ProductInfo product={product} />
         </div>

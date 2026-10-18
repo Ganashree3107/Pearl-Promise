@@ -180,11 +180,11 @@ function ImageGallery({ product }) {
 
   return (
 
-    <div className="space-y-8">
+    <div className="contents lg:block lg:space-y-8">
 
       {/* ================= Gallery ================= */}
 
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="order-1 flex flex-col lg:flex-row gap-6">
 
         {/* ================= Thumbnails ================= */}
 
@@ -292,7 +292,7 @@ function ImageGallery({ product }) {
 
           {/* Main Product Image */}
 
-          <div className="flex min-h-[620px] items-center justify-center p-10">
+          <div className="flex min-h-[340px] items-center justify-center p-6 sm:min-h-[480px] sm:p-8 lg:min-h-[620px] lg:p-10">
 
             <AnimatePresence mode="wait">
 
@@ -321,7 +321,7 @@ function ImageGallery({ product }) {
                 whileHover={{
                   scale: 1.08,
                 }}
-                className="max-h-[520px] w-auto object-contain cursor-zoom-in"
+                className="max-h-[280px] w-auto object-contain cursor-zoom-in sm:max-h-[400px] lg:max-h-[520px]"
                 onError={(event) => {
                   event.currentTarget.src = "/images/logo/PearlPromise-logo.png";
                 }}
@@ -336,7 +336,7 @@ function ImageGallery({ product }) {
       </div>
       {/* ================= Product Highlights ================= */}
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="order-3 grid gap-6 lg:grid-cols-2">
 
         {/* Ingredients */}
 
@@ -457,7 +457,7 @@ function ImageGallery({ product }) {
 
       {/* ================= Texture & Usage ================= */}
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="order-3 grid gap-6 lg:grid-cols-2">
 
         {/* Texture */}
 
@@ -503,7 +503,7 @@ function ImageGallery({ product }) {
 
       {/* ================= Premium Promise ================= */}
 
-      <div className="mt-12 flex justify-center">
+      <div className="order-3 flex justify-center lg:mt-12">
   <div className="w-full max-w-5xl rounded-[32px] border border-pink-100 bg-gradient-to-r from-pink-50 via-white to-rose-50 p-8 shadow-sm">
 
         <div className="grid md:grid-cols-4 gap-6 text-center">

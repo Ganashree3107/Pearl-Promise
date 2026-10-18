@@ -49,14 +49,15 @@ button:not(:disabled):active {
   overflow-x: clip;
 }
 
+/* --page-zoom is set in index.html from the viewport width */
 @media (min-width: 1024px) {
   #root {
-    zoom: 67%;
-    min-height: 149.2538vh;
+    zoom: var(--page-zoom, 0.67);
+    min-height: calc(100vh / var(--page-zoom, 0.67));
   }
 
   .min-h-screen {
-    min-height: 149.2538vh;
+    min-height: calc(100vh / var(--page-zoom, 0.67));
   }
 }
 

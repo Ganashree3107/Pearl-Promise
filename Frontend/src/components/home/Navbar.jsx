@@ -37,7 +37,7 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50 h-16 border-b border-pink-100 bg-white/95 backdrop-blur-md">
-      <div className="flex h-full items-center justify-between px-4 lg:px-10 xl:px-14">
+      <div className="flex h-full items-center justify-between px-4 lg:px-14">
         <div className="flex min-w-0 flex-1 items-center gap-4">
           <Link to="/" className="flex-shrink-0" onClick={() => setMobileOpen(false)}>
             <img
@@ -47,7 +47,7 @@ const Navbar = () => {
             />
           </Link>
 
-          <ul className="hidden flex-1 items-center justify-center gap-8 text-[18px] font-medium lg:flex xl:gap-10">
+          <ul className="hidden flex-1 items-center justify-center gap-8 text-[18px] font-medium lg:flex lg:gap-10">
             <li>
               <NavLink to="/" end className={navLinkClass}>
                 Home

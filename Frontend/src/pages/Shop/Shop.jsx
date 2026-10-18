@@ -65,7 +65,7 @@ useEffect(()=>{
         sort={sort}
         setSort={setSort}
       />
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 pb-16 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 pb-16 sm:grid-cols-2 lg:grid-cols-4">
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

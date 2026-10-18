@@ -88,7 +88,7 @@ function WhyPearlPromise() {
         {/* Cards */}
 
         <div className="mt-20 mx-auto max-w-7xl ">
-            <div className="grid gap-8 lg:grid-cols-2 2xl:grid-cols-4">
+            <div className="grid gap-8 lg:grid-cols-4">
 
           {features.map((feature, index) => {
 
