@@ -87,7 +87,7 @@ function Hero() {
       {/* Soft Background Glow */}
       <div className="pointer-events-none absolute right-0 top-1/2 h-[750px] w-[550px] -translate-y-1/2 rounded-full bg-white/40 blur-3xl"></div>
 
-      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-4 pt-12 pb-24 sm:px-6 md:px-8 lg:min-h-[815px] lg:flex-row lg:gap-6 lg:px-12 lg:py-10">
+      <div className="relative z-10 mx-auto flex max-w-350 flex-col items-center justify-between gap-8 px-4 pt-14 pb-28 sm:px-6 md:px-8 hero-fit-screen lg:flex-row lg:gap-6 lg:px-12 lg:py-14">
 
         {/* LEFT CONTENT */}
 
