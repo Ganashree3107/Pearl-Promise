@@ -13,11 +13,13 @@ import OrderTimeline from "../../components/orders/OrderTimeline";
 import OrderActions from "../../components/orders/OrderActions";
 import ReviewModal from "../../components/orders/ReviewModal";
 import ReturnModal from "../../components/orders/ReturnModal";
+import PageLoader from "../../components/ui/PageLoader";
+import SafeImage from "../../components/common/SafeImage";
 
 export default function Orders() {
   const navigate = useNavigate();
   const { orderId } = useParams();
-  const { orders, cancelOrder, returnOrder } = useOrder();
+  const { orders, isLoadingOrders, cancelOrder, returnOrder } = useOrder();
 
   // Find current order
   const order = useMemo(() => {
@@ -26,15 +28,19 @@ export default function Orders() {
 
   // Redirect if order not found
   useEffect(() => {
-    if (!order) {
+    if (!order && !isLoadingOrders) {
       navigate("/orders", { replace: true });
     }
-  }, [order, navigate]);
+  }, [isLoadingOrders, order, navigate]);
 
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [isReturnOpen, setIsReturnOpen] = useState(false);
 
-  if (!order) return null;
+  if (!order) {
+    return isLoadingOrders ? (
+      <PageLoader message="Loading order details..." />
+    ) : null;
+  }
 
   const orderStatus = order.status;
   const isCancelled = orderStatus === "Cancelled";
@@ -217,10 +223,11 @@ const handleReturn = async (returnData) => {
                     className="flex flex-col gap-4 rounded-2xl border border-pink-100 p-4 md:flex-row md:items-center"
                   >
 
-                    <img
-                      src={item.images?.[0]}
+                    <SafeImage
+                      src={item.images?.[0] || item.image}
                       alt={item.name}
                       className="h-24 w-24 rounded-2xl object-cover"
+                      loading="lazy"
                     />
 
                     <div className="flex-1">

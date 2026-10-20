@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Eye } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import OrderStatusBadge from "./OrderStatusBadge";
+import SafeImage from "../common/SafeImage";
 
 export default function OrderCard({ order, index }) {
   const navigate = useNavigate();
@@ -19,10 +20,11 @@ export default function OrderCard({ order, index }) {
 
         {/* Product Image */}
 
-        <img
-          src={firstItem?.images?.[0]}
+        <SafeImage
+          src={firstItem?.images?.[0] || firstItem?.image}
           alt={firstItem?.name}
           className="h-28 w-28 rounded-2xl object-cover"
+          loading="lazy"
         />
 
         {/* Order Details */}

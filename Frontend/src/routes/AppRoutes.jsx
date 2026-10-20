@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import StoreLayout from "../components/layout/StoreLayout";
+import PageLoader from "../components/ui/PageLoader";
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./PublicRoute";
 
@@ -26,7 +27,7 @@ const TermsConditions = lazy(() => import("../pages/TermsConditions.jsx/TermsCon
 
 function AppRoutes() {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<PageLoader />}>
       <Routes>
       <Route element={<StoreLayout />}>
         <Route path="/" element={<Home />} />

@@ -22,6 +22,7 @@ function mapOrder(order) {
       slug: item.slug,
       name: item.name,
       image: item.image,
+      images: item.image ? [item.image] : [],
       price: item.price,
       quantity: item.quantity,
     })),
@@ -41,16 +42,21 @@ function mapOrder(order) {
 export function OrderProvider({ children }) {
   const { isAuthenticated } = useAuth();
   const [orders, setOrders] = useState([]);
+  const [hasLoadedOrders, setHasLoadedOrders] = useState(false);
 
   const refreshOrders = useCallback(async () => {
     if (!isAuthenticated) {
       setOrders([]);
+      setHasLoadedOrders(false);
       return;
     }
+
     try {
       setOrders((await orderApi.list()).map(mapOrder));
     } catch {
       // Keep the last known orders if the API is temporarily unavailable.
+    } finally {
+      setHasLoadedOrders(true);
     }
   }, [isAuthenticated]);
 
@@ -65,7 +71,7 @@ export function OrderProvider({ children }) {
   useEffect(() => {
     if (!isAuthenticated || !hasOrdersInTransit) return undefined;
 
-    const interval = setInterval(refreshOrders, 1000);
+    const interval = setInterval(refreshOrders, 3000);
     return () => clearInterval(interval);
   }, [hasOrdersInTransit, isAuthenticated, refreshOrders]);
 
@@ -104,6 +110,7 @@ export function OrderProvider({ children }) {
 
   const value = useMemo(() => ({
     orders,
+    isLoadingOrders: isAuthenticated && !hasLoadedOrders,
     orderCount,
     processingOrders,
     shippedOrders,
@@ -117,7 +124,7 @@ export function OrderProvider({ children }) {
     buyAgain,
     clearOrders,
     refreshOrders,
-  }), [orders, isAuthenticated]);
+  }), [orders, hasLoadedOrders, isAuthenticated]);
 
   return <OrderContext.Provider value={value}>{children}</OrderContext.Provider>;
 }

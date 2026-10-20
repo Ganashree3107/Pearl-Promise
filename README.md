@@ -146,7 +146,9 @@ non-HTTPS frontend origins.
    routed through the frontend origin.
 2. Build with `npm run build`.
 3. Deploy `Frontend/dist`.
-4. Configure the static host to serve `index.html` for client-side routes.
+4. Client-side route fallbacks are included for Netlify (`Frontend/public/_redirects`)
+   and Vercel (`Frontend/vercel.json`). For other static hosts, configure a rewrite
+   to serve `index.html` for application routes while serving existing assets normally.
 
 ## API Overview
 

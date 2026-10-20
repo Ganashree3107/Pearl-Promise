@@ -4,10 +4,11 @@ import OrderHeader from "../../components/orders/OrderHeader";
 import OrderTabs from "../../components/orders/OrderTabs";
 import OrderCard from "../../components/orders/OrderCard";
 import EmptyOrders from "../../components/orders/EmptyOrders";
+import PageLoader from "../../components/ui/PageLoader";
 import { useOrder } from "../../context/OrderContext";
 
 export default function OrderHistory() {
-  const { orders } = useOrder();
+  const { orders, isLoadingOrders } = useOrder();
   const [search, setSearch] = useState("");
   const [selectedTab, setSelectedTab] = useState("All");
 
@@ -48,7 +49,11 @@ export default function OrderHistory() {
         />
         <div className="mt-8">
 
-          {filteredOrders.length === 0 ? (
+          {isLoadingOrders ? (
+
+            <PageLoader message="Loading your orders..." />
+
+          ) : filteredOrders.length === 0 ? (
 
             <EmptyOrders />
 

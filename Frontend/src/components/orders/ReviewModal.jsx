@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { X, Star, Upload } from "lucide-react";
 import { reviewApi } from "../../services/api";
+import SafeImage from "../common/SafeImage";
 
 export default function ReviewModal({
   isOpen,
@@ -12,6 +13,8 @@ export default function ReviewModal({
   const [review, setReview] = useState("");
   const [image, setImage] = useState(null);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const firstItem = order?.checkoutItems?.[0];
 
   if (!isOpen) return null;
 
@@ -27,8 +30,6 @@ export default function ReviewModal({
     resetForm();
     onClose();
   };
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async () => {
     // Validation
@@ -87,20 +88,14 @@ export default function ReviewModal({
 
         {/* Product */}
 
-        {order?.checkoutItems?.[0] && (
+        {firstItem && (
           <div className="mb-6 flex items-center gap-4 rounded-2xl bg-pink-50 p-4">
-            {order.checkoutItems[0].images?.[0] && (
-              <img
-                src={
-                  order.checkoutItems[0]
-                    .images[0]
-                }
-                alt={
-                  order.checkoutItems[0].name
-                }
-                className="h-16 w-16 rounded-xl object-cover"
-              />
-            )}
+            <SafeImage
+              src={firstItem.images?.[0] || firstItem.image}
+              alt={firstItem.name}
+              className="h-16 w-16 rounded-xl object-cover"
+              loading="lazy"
+            />
 
             <div>
               <p className="text-sm text-gray-500">
@@ -108,7 +103,7 @@ export default function ReviewModal({
               </p>
 
               <h3 className="font-semibold text-gray-900">
-                {order.checkoutItems[0].name}
+                {firstItem.name}
               </h3>
             </div>
           </div>
